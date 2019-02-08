@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dotloadmovie/wikirelate/network"
-	"github.com/dotloadmovie/wikirelate/utils"
+	"github.com/dotloadmovie/wikintersect/network"
+	"github.com/dotloadmovie/wikintersect/utils"
 )
 
 func main() {
