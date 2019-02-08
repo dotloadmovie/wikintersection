@@ -1,11 +1,11 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
 	"github.com/dotloadmovie/wikirelate/network"
+	"github.com/dotloadmovie/wikirelate/utils"
 )
 
 func main() {
@@ -13,18 +13,14 @@ func main() {
 
 	fmt.Println(argsWithoutProg)
 
-	arg1Ptr := flag.String("article1", "null", "a string")
-	arg2Ptr := flag.String("article2", "null", "a string")
+	first := network.GetWiki(argsWithoutProg[0])
+	second := network.GetWiki(argsWithoutProg[1])
 
-	flag.Parse()
+	intersection := utils.GetIntersect(first, second)
 
-	fmt.Println(*arg1Ptr)
-	fmt.Println(*arg2Ptr)
-
-	response := network.GetWiki()
-
-	for _, entry := range response {
-		fmt.Printf("%s", entry.Map()["title"])
-		fmt.Println("++======++")
+	for _, item := range intersection {
+		fmt.Printf("%s", item)
+		fmt.Println("++")
 	}
+
 }
