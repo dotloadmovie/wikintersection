@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
-
 	"github.com/dotloadmovie/wikintersect/network"
 	"github.com/dotloadmovie/wikintersect/utils"
 	"github.com/dotloadmovie/wikintersect/view"
+	"os"
 )
 
 func main() {
@@ -14,15 +13,30 @@ func main() {
 
 	fmt.Println(argsWithoutProg)
 
-	first := network.GetWiki(argsWithoutProg[0])
-	second := network.GetWiki(argsWithoutProg[1])
+	switchCommand := argsWithoutProg[0]
 
-	intersection := utils.GetIntersect(first, second)
+	if switchCommand == "compare" {
+		getIntersection(argsWithoutProg[1], argsWithoutProg[2])
+	}
 
-	//for _, item := range intersection {
-	//	fmt.Printf("%s", item)
-	//	fmt.Println("++")
-	//}
+	if switchCommand == "search" {
+		getSearch(argsWithoutProg[1])
+	}
+
+}
+// getIntersection: get the intersection of two articles from Wikipedia
+func getIntersection(first string, second string) {
+	firstResults := network.GetWiki(first)
+	secondResults := network.GetWiki(second)
+
+	intersection := utils.GetIntersect(firstResults, secondResults)
 
 	view.RenderTable(intersection)
+}
+
+
+
+// getSearch: get a list of article matches from Wikipedia
+func getSearch(searchString string) {
+
 }
