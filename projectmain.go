@@ -6,6 +6,7 @@ import (
 
 	"github.com/dotloadmovie/wikintersect/network"
 	"github.com/dotloadmovie/wikintersect/utils"
+	"github.com/dotloadmovie/wikintersect/view"
 )
 
 func main() {
@@ -18,9 +19,10 @@ func main() {
 
 	intersection := utils.GetIntersect(first, second)
 
-	for _, item := range intersection {
-		fmt.Printf("%s", item)
-		fmt.Println("++")
-	}
+	//for _, item := range intersection {
+	//	fmt.Printf("%s", item)
+	//	fmt.Println("++")
+	//}
 
+	view.RenderTable(intersection)
 }
