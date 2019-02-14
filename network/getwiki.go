@@ -26,7 +26,7 @@ func requestWiki(name string, continued string, response []string) []string {
 		"&formatversion=2",
 		"&action=query",
 		"&prop=links",
-		"&pllimit=500",
+		"&pllimit=200",
 	}
 
 	if continued == "null" {
