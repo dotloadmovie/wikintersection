@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"net/url"
 )
 
 // GetSearch sends a string to the Wiki API and responds with a list of matching articles
@@ -30,7 +31,11 @@ func requestWikiSearch(name string, continued string, response []string) []strin
 		return response
 	}
 
-	requestTemplate = append(requestTemplate, "&srsearch=intitle:"+name)
+	if len(response) >= 900 {
+		return response
+	}
+
+	requestTemplate = append(requestTemplate, "&srsearch=intitle:"+url.QueryEscape(name))
 
 	requestTemplate = append(requestTemplate, "&sroffset="+continued)
 

@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"net/url"
 
 	"github.com/tidwall/gjson"
 )
@@ -33,7 +34,7 @@ func requestWiki(name string, continued string, response []string) []string {
 		return response
 	}
 
-	requestTemplate = append(requestTemplate, "&titles="+name)
+	requestTemplate = append(requestTemplate, "&titles="+url.QueryEscape(name))
 
 	if continued != "initial" {
 		requestTemplate = append(requestTemplate, "&plcontinue="+continued)

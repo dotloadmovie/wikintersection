@@ -4,9 +4,11 @@ package utils
 func GetIntersect(first []string, second []string) []string {
 	result := make([]string, 0)
 
+	start := 0
 	for _, firstItem := range first {
-		for _, secondItem := range second {
-			if firstItem == secondItem {
+		for i := start; i< len(second); i++ {
+			if firstItem == second[i] {
+				start = i
 				result = append(result, firstItem)
 			}
 		}
