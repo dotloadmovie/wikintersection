@@ -43,7 +43,7 @@ will return a list of fuzzy matched wikipedia articles to feed the comparison en
 
 Dave Tickle – dave@shiftinteraction.com
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+Distributed under the unlicense license. See ``UNLICENSE.txt`` for more information.
 
 https://github.com/dotloadmovie/wikintersection
 
