@@ -7,6 +7,7 @@ import (
 	"strings"
 	"net/url"
 
+	"github.com/dotloadmovie/wikintersection/utils"
 	"github.com/tidwall/gjson"
 )
 
@@ -60,7 +61,9 @@ func requestWiki(name string, continued string, response []string) []string {
 	// learnnote: check out what is preventing it working (some kind of type inconsistency?)
 	// for the time being, we can use this to cast the slice type to string
 	for _, entry := range raw.Array() {
-		response = append(response, string(entry.Get("title").String()))
+		if !isMetaLink(string(entry.Get("title").String())) {
+			response = append(response, string(entry.Get("title").String()))
+		}
 	}
 
 	nextContinued := "null"
@@ -71,6 +74,19 @@ func requestWiki(name string, continued string, response []string) []string {
 
 	// recurse through the continue results from Wikipedia
 	return requestWiki(name, nextContinued, response)
+}
+
+func isMetaLink(name string) bool {
+	metaArticles := []string{
+		"wikipedia:",
+		"meta:",
+		"template:",
+		"template talk:",
+		"portal:",
+		"category:",
+	}
+
+	return utils.MatchArray(metaArticles, name)
 }
 
 // extract just the links array
