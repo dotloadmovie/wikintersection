@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/dotloadmovie/wikintersect/network"
-	"github.com/dotloadmovie/wikintersect/utils"
-	"github.com/dotloadmovie/wikintersect/view"
+	"github.com/dotloadmovie/wikintersection/network"
+	"github.com/dotloadmovie/wikintersection/utils"
+	"github.com/dotloadmovie/wikintersection/view"
 	"os"
 )
 
