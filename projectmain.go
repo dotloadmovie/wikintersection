@@ -24,6 +24,7 @@ func main() {
 	}
 
 }
+
 // getIntersection: get the intersection of two articles from Wikipedia
 func getIntersection(first string, second string) {
 	firstResults := network.GetWiki(first)
@@ -34,9 +35,8 @@ func getIntersection(first string, second string) {
 	view.RenderTable(intersection)
 }
 
-
-
 // getSearch: get a list of article matches from Wikipedia
 func getSearch(searchString string) {
-
+	results := network.GetSearch(searchString)
+	view.RenderTable(results)
 }
