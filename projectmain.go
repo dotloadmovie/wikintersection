@@ -27,6 +27,16 @@ func main() {
 
 // getIntersection: get the intersection of two articles from Wikipedia
 func getIntersection(first string, second string) {
+	defaultWikiParams := map[string]string {
+		"format": "json",
+		"formatversion": "2",
+		"action": "query",
+		"prop": "links",
+		"pllimit": "200",
+	}
+
+	network.InitWiki(defaultWikiParams)
+
 	firstResults := network.GetWiki(first)
 	secondResults := network.GetWiki(second)
 
@@ -37,6 +47,16 @@ func getIntersection(first string, second string) {
 
 // getSearch: get a list of article matches from Wikipedia
 func getSearch(searchString string) {
+	defaultSearchParams := map[string]string {
+		"action": "query",
+		"srlimit": "300",
+		"list": "search",
+		"&utf8":"",
+		"format":"json",
+	}
+
+	network.InitSearch(defaultSearchParams)
+
 	results := network.GetSearch(searchString)
 	view.RenderTable(results)
 }

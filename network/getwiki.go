@@ -11,6 +11,21 @@ import (
 	"github.com/tidwall/gjson"
 )
 
+var wikiParams = map[string]string{
+	"format": "",
+	"formatversion": "",
+	"action": "",
+	"prop": "",
+	"pllimit": "",
+}
+
+
+func InitWiki(defaultParams map[string]string) {
+	for key, value := range(defaultParams) {
+		wikiParams[key] = value
+	}
+}
+
 // GetWiki fetcher for article
 func GetWiki(title string) []string {
 	links := make([]string, 0)
@@ -23,13 +38,11 @@ func GetWiki(title string) []string {
 // call against the Wikipedia API and assemble results
 func requestWiki(name string, continued string, response []string) []string {
 	requestTemplate := []string{
-		"https://en.wikipedia.org/w/api.php",
-		"?format=json",
-		"&formatversion=2",
-		"&action=query",
-		"&prop=links",
-		"&pllimit=200",
+		"https://en.wikipedia.org/w/api.php?",
 	}
+
+	requestTemplate = utils.MakeParams(requestTemplate, wikiParams)
+
 
 	if continued == "null" {
 		return response
