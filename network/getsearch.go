@@ -7,7 +7,24 @@ import (
 	"net/http"
 	"strings"
 	"net/url"
+
+	"github.com/dotloadmovie/wikintersection/utils"
 )
+
+var searchParams = map[string]string{
+	"action": "",
+	"srlimit": "",
+	"list": "",
+	"utf8": "",
+	"format": "",
+}
+
+
+func InitSearch(defaultParams map[string]string) {
+	for key, value := range(defaultParams) {
+		searchParams[key] = value
+	}
+}
 
 // GetSearch sends a string to the Wiki API and responds with a list of matching articles
 func GetSearch(search string) []string {
@@ -20,12 +37,10 @@ func GetSearch(search string) []string {
 
 func requestWikiSearch(name string, continued string, response []string) []string {
 	requestTemplate := []string{
-		"https://en.wikipedia.org/w/api.php",
-		"?action=query",
-		"&srlimit=300",
-		"&list=search",
-		"&utf8=&format=json",
+		"https://en.wikipedia.org/w/api.php?",
 	}
+
+	requestTemplate = utils.MakeParams(requestTemplate, searchParams)
 
 	if continued == "null" {
 		return response

@@ -15,3 +15,11 @@ func MatchArray(arr []string, str string) bool {
 
 	return output
 }
+
+func MakeParams(base[]string, params map[string]string)[]string {
+	for key, value := range(params) {
+		base = append(base, key + "=" + value + "&")
+	}
+
+	return base
+}
