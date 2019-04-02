@@ -19,7 +19,7 @@ go build projectmain.go -o wikintersection
 
 ## Usage example
 
-This isn't a stupendously useful application but it does potentially return better clarifications than a random search-engine search. It's handy for winning pub arguments but ideally needs to be harnessed to the Web UI interface at https://www.github.com/dotloadmovie/wikinteraction-web to be properly user friendly
+This isn't a stupendously useful application but it does potentially return better clarifications than a random search-engine search. It's handy for winning pub arguments but ideally needs to be harnessed to the Web UI interface at https://www.github.com/dotloadmovie/wikintersection-web to be properly user friendly
 
 to run it at command line:
 
